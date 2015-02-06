@@ -37,10 +37,6 @@
             android:name="com.greenzelaia.geophotoloc.ActivitySeleccion"
             android:label="@string/title_activity_activity_seleccion" >
         </activity>
-        <activity
-            android:name="com.greenzelaia.geophotoloc.ActivityPreferencias"
-            android:label="@string/title_activity_activity_preferencias" >
-        </activity>
     </application>
 
 </manifest>
