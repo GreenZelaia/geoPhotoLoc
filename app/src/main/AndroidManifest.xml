@@ -20,12 +20,12 @@
             android:value="patux.map-bv4ggka0" />
 
         <activity
-            android:name="com.greenzelaia.geophotoloc.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="Jonanvc -> The best :)"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.greenzelaia.geophotoloc.GetLocation"
+            android:name=".utils.GetLocation"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.greenzelaia.geophotoloc.ActivitySeleccion"
+            android:name=".activities.ActivitySeleccion"
             android:label="@string/title_activity_activity_seleccion" >
         </activity>
     </application>

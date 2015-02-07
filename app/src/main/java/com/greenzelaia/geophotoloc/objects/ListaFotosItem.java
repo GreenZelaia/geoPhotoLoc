@@ -1,10 +1,12 @@
-package com.greenzelaia.geophotoloc;
+package com.greenzelaia.geophotoloc.objects;
 
 import java.io.Serializable;
 
 import android.graphics.Bitmap;
 import android.location.Location;
-   
+
+import com.greenzelaia.geophotoloc.utils.SerializableImage;
+
 public class ListaFotosItem implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package com.greenzelaia.geophotoloc;
+package com.greenzelaia.geophotoloc.utils;
 import android.content.Context;
 import android.location.Location;
+
+import com.greenzelaia.geophotoloc.R;
 
 /**
  * Defines app-wide constants and utilities

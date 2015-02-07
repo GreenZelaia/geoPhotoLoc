@@ -1,4 +1,4 @@
-package com.greenzelaia.geophotoloc;
+package com.greenzelaia.geophotoloc.views;
 
 import java.io.InputStream;
 import java.text.NumberFormat;
@@ -14,10 +14,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-  
+
+import com.greenzelaia.geophotoloc.objects.ListaFotosItem;
+import com.greenzelaia.geophotoloc.R;
+import com.greenzelaia.geophotoloc.activities.MainActivity;
+
 public class ListaFotosAdapter extends ArrayAdapter<ListaFotosItem> {
        
     private ArrayList<ListaFotosItem> mArrayItems;

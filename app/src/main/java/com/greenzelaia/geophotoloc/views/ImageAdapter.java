@@ -1,4 +1,4 @@
-package com.greenzelaia.geophotoloc;
+package com.greenzelaia.geophotoloc.views;
 
 import java.util.List;
 

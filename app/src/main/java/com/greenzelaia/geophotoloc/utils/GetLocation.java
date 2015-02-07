@@ -1,4 +1,4 @@
-package com.greenzelaia.geophotoloc;
+package com.greenzelaia.geophotoloc.utils;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,6 +10,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.greenzelaia.geophotoloc.R;
+import com.greenzelaia.geophotoloc.activities.MainActivity;
 
 import android.app.Activity;
 import android.app.Dialog;

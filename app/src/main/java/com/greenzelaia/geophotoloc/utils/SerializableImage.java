@@ -1,4 +1,4 @@
-package com.greenzelaia.geophotoloc;
+package com.greenzelaia.geophotoloc.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

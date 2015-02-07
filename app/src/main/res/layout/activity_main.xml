@@ -8,5 +8,5 @@
 		android:verticalSpacing="0dp"
 		android:gravity="center"
 		android:stretchMode="columnWidth" >
-  
+
 </GridView>
