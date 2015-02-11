@@ -9,9 +9,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewTreeObserver;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.greenzelaia.geophotoloc.utils.ImageGetTask;
@@ -24,12 +28,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends ListActivity implements ImageGetTask.ImageGetTaskCallback, OptionsDialog.OptionsDialogCallback{
+public class MainActivity extends ActionBarActivity implements ImageGetTask.ImageGetTaskCallback, OptionsDialog.OptionsDialogCallback, ListaFotosAdapter.itemSelectedCallback{
 
 	private static final String TAG = "geoPhotoLoc";
     private static final String TAG_DIALOG_FRAGMENT = "dialog_fragment";
 
     OptionsDialog dialog;
+
+    GridView gridView;
 
 	Location mLocation;
 	ListaFotosAdapter mListaFotosAdapter;
@@ -42,14 +48,21 @@ public class MainActivity extends ListActivity implements ImageGetTask.ImageGetT
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_awesome_toolbar);
+        setSupportActionBar(toolbar);
+
 		Intent intent = getIntent();
 		mLocation = new Location("Me");
-		
+
 		mLocation.setLongitude(intent.getDoubleExtra("longitud", 0));
 		mLocation.setLatitude(intent.getDoubleExtra("latitud", 0));
 
-		mListaFotosAdapter = new ListaFotosAdapter(this, R.layout.itemlistafotos, new ArrayList<ListaFotosItem>());
-		getListView().setAdapter(mListaFotosAdapter);
+        gridView = (GridView) findViewById(R.id.gridView);
+
+		mListaFotosAdapter = new ListaFotosAdapter(this, R.layout.itemlistafotos, new ArrayList<ListaFotosItem>(), mLocation);
+		gridView.setAdapter(mListaFotosAdapter);
 		
 		mPreferencias =	getSharedPreferences("GeoPhotoLocPreferences",Context.MODE_PRIVATE);
 		
@@ -57,18 +70,10 @@ public class MainActivity extends ListActivity implements ImageGetTask.ImageGetT
 		mCantidadFotos = mPreferencias.getInt("cantidad", 20);
 
         dialog = new OptionsDialog();
-		
-		updateDisplay(mLocation);
-	}
 
-    public void itemSeleccionado(ListaFotosItem itemLista) {
-        Intent intent = new Intent(this, ActivitySeleccion.class);
-        intent.putExtra("itemSeleccionado", itemLista);
-        intent.putExtra("longitud", mLocation.getLongitude());
-        intent.putExtra("latitud", mLocation.getLatitude());
-        intent.putExtra("location", mLocation);
-        startActivity(intent);
-    }
+		updateDisplay(mLocation);
+
+	}
 
     // Update display
     private void updateDisplay(Location location) {
@@ -88,14 +93,6 @@ public class MainActivity extends ListActivity implements ImageGetTask.ImageGetT
         }
     }
 
-    public Location getLocation() {
-        return this.mLocation;
-    }
-
-    public void refreshLista() {
-        mListaFotosAdapter.notifyDataSetChanged();
-    }
-
     @Override
     public void imageGetPostExecute(String result) {
         try {
@@ -111,6 +108,16 @@ public class MainActivity extends ListActivity implements ImageGetTask.ImageGetT
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void itemSelected(ListaFotosItem itemLista) {
+        Intent intent = new Intent(this, ActivitySeleccion.class);
+        intent.putExtra("itemSeleccionado", itemLista);
+        intent.putExtra("longitud", mLocation.getLongitude());
+        intent.putExtra("latitud", mLocation.getLatitude());
+        intent.putExtra("location", mLocation);
+        startActivity(intent);
     }
 
     @Override

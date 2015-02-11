@@ -1,12 +1,29 @@
- <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-     	android:id="@+id/gridview"
-     	android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:numColumns="auto_fit"
-		android:columnWidth="90dp"
-		android:horizontalSpacing="0dp"
-		android:verticalSpacing="0dp"
-		android:gravity="center"
-		android:stretchMode="columnWidth" >
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-</GridView>
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/my_awesome_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" />
+
+    <GridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/gridView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:numColumns="auto_fit"
+        android:horizontalSpacing="0dp"
+        android:verticalSpacing="0dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        android:layout_below="@+id/my_awesome_toolbar">
+
+    </GridView>
+
+</RelativeLayout>
+

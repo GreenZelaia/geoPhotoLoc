@@ -7,22 +7,19 @@
     <ImageView
         android:id="@+id/imvImagen"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        />
+        android:layout_height="200dp"
+        android:adjustViewBounds="false" />
     
 
     <TextView
         android:id="@+id/txtMetros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imvImagen"
-        android:layout_alignTop="@+id/imvImagen"
-        android:layout_alignRight="@+id/imvImagen"
-        android:layout_alignBottom="@+id/imvImagen"
-        android:layout_margin="0dp"
         android:gravity="bottom|left"
         android:textColor="#FFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
   
 </RelativeLayout> 
