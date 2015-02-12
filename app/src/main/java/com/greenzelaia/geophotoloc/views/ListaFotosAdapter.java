@@ -29,10 +29,9 @@ public class ListaFotosAdapter extends ArrayAdapter<ListaFotosItem> {
     private Location mLocation;
     itemSelectedCallback callback;
   
-    public ListaFotosAdapter(Activity a, int itemViewResourceId, ArrayList<ListaFotosItem> entries, Location mLocation) {
+    public ListaFotosAdapter(Activity a, int itemViewResourceId, ArrayList<ListaFotosItem> entries) {
         super(a, itemViewResourceId, entries);
         this.mArrayItems = entries;
-        this.mLocation = mLocation;
         this.callback = (itemSelectedCallback) a;
     }
   
@@ -65,9 +64,7 @@ public class ListaFotosAdapter extends ArrayAdapter<ListaFotosItem> {
   
         final ListaFotosItem itemLista = mArrayItems.get(position);
 
-        if (itemLista != null) {
-        	itemLista.setDistancia(mLocation); // Desde aqui llamamos al main que le devuelve la location conseguida, luego el objeto LOitem hace el calculo de la distancia (ponia activity, no mActivity :( )
-        }
+        itemLista.setDistancia(mLocation); // Desde aqui llamamos al main que le devuelve la location conseguida, luego el objeto LOitem hace el calculo de la distancia (ponia activity, no mActivity :( )
 
         NumberFormat format = NumberFormat.getNumberInstance();
         format.setMinimumFractionDigits(2);
@@ -88,6 +85,10 @@ public class ListaFotosAdapter extends ArrayAdapter<ListaFotosItem> {
         });
 
         return v;
+    }
+
+    public void setLocation(Location location){
+        mLocation = location;
     }
   
 } 

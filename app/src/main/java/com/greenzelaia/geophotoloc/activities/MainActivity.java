@@ -2,8 +2,6 @@ package com.greenzelaia.geophotoloc.activities;
 
 import java.util.ArrayList;
 
-import android.app.FragmentManager;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,11 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewTreeObserver;
 import android.widget.GridView;
 import android.widget.Toast;
 
 import com.greenzelaia.geophotoloc.utils.ImageGetTask;
+import com.greenzelaia.geophotoloc.utils.LocationGatherer;
 import com.greenzelaia.geophotoloc.views.ListaFotosAdapter;
 import com.greenzelaia.geophotoloc.objects.ListaFotosItem;
 import com.greenzelaia.geophotoloc.R;
@@ -28,17 +26,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends ActionBarActivity implements ImageGetTask.ImageGetTaskCallback, OptionsDialog.OptionsDialogCallback, ListaFotosAdapter.itemSelectedCallback{
+public class MainActivity extends ActionBarActivity implements ImageGetTask.ImageGetTaskCallback, OptionsDialog.OptionsDialogCallback, ListaFotosAdapter.itemSelectedCallback, LocationGatherer.LocationGathererCallback {
 
 	private static final String TAG = "geoPhotoLoc";
     private static final String TAG_DIALOG_FRAGMENT = "dialog_fragment";
 
     OptionsDialog dialog;
-
     GridView gridView;
+    ListaFotosAdapter mListaFotosAdapter;
 
+    LocationGatherer locationGatherer;
 	Location mLocation;
-	ListaFotosAdapter mListaFotosAdapter;
 	
 	SharedPreferences mPreferencias;
 	
@@ -53,15 +51,11 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_awesome_toolbar);
         setSupportActionBar(toolbar);
 
-		Intent intent = getIntent();
 		mLocation = new Location("Me");
-
-		mLocation.setLongitude(intent.getDoubleExtra("longitud", 0));
-		mLocation.setLatitude(intent.getDoubleExtra("latitud", 0));
 
         gridView = (GridView) findViewById(R.id.gridView);
 
-		mListaFotosAdapter = new ListaFotosAdapter(this, R.layout.itemlistafotos, new ArrayList<ListaFotosItem>(), mLocation);
+		mListaFotosAdapter = new ListaFotosAdapter(this, R.layout.itemlistafotos, new ArrayList<ListaFotosItem>());
 		gridView.setAdapter(mListaFotosAdapter);
 		
 		mPreferencias =	getSharedPreferences("GeoPhotoLocPreferences",Context.MODE_PRIVATE);
@@ -71,18 +65,25 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 
         dialog = new OptionsDialog();
 
-		updateDisplay(mLocation);
-
+        locationGatherer = LocationGatherer.getInstance();
+        locationGatherer.requestLocation(this);
 	}
 
+    @Override
+    public void locationObtained() {
+        mLocation = locationGatherer.getLocation();
+        mListaFotosAdapter.setLocation(mLocation);
+        updateDisplay();
+    }
+
     // Update display
-    private void updateDisplay(Location location) {
-        if(location != null){ // de no haber aun un lonlat sacamos un mensaje para que lo intente mas adelante
+    private void updateDisplay() {
+        if(mLocation != null){ // de no haber aun un lonlat sacamos un mensaje para que lo intente mas adelante
             Log.d(TAG, "update display con location");
             double angulo = mRadio * 0.0089833458; // para crear los bounds del mapa en 5 km mas o menos -- angulo por kilometro = 360 / (2 * pi * 6378)
             new ImageGetTask(this).execute("http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=" + mCantidadFotos + "&minx=" +
-                    (location.getLongitude() - angulo) + "&miny=" + (location.getLatitude() - angulo) + "&maxx=" + (location.getLongitude() + angulo) +
-                    "&maxy=" + (location.getLatitude() + angulo) + "&size=medium&mapfilter=true");
+                    (mLocation.getLongitude() - angulo) + "&miny=" + (mLocation.getLatitude() - angulo) + "&maxx=" + (mLocation.getLongitude() + angulo) +
+                    "&maxy=" + (mLocation.getLatitude() + angulo) + "&size=medium&mapfilter=true");
         }
         else{
             Log.d(TAG, "update display SIN location");
@@ -128,13 +129,8 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
         editor.putInt("radio", mRadio);
         editor.putInt("cantidad", mCantidadFotos);
         editor.commit();
-        updateDisplay(this.mLocation);
+        updateDisplay();
     }
-
-    @Override
-	protected void onPause() {
-		super.onPause();
-	}
 
 	@Override
 	protected void onResume() {
