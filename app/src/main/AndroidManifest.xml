@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.greenzelaia.geophotoloc">
+    package="com.greenzelaia.geophotoloc" >
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -31,6 +32,10 @@
         <activity
             android:name=".activities.ActivitySeleccion"
             android:label="@string/title_activity_activity_seleccion" >
+        </activity>
+        <activity
+            android:name=".activities.OptionsActivity"
+            android:label="@string/title_activity_options" >
         </activity>
     </application>
 

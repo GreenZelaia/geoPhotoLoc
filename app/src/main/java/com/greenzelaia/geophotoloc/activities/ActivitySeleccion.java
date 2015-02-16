@@ -60,10 +60,9 @@ public class ActivitySeleccion extends Activity implements MapEventsReceiver, Lo
 	final static String TAG = "AOA";
 	
 	TabHost tabs;
-	TextView txtAutor, txtNombre, txtPrueba;
+	TextView txtAutor, txtNombre;
 	ImageView imvImagen;
 	ListaFotosItem itemSeleccionado;
-	Location location;
 	double lat;
 	double lon;
 
@@ -71,7 +70,6 @@ public class ActivitySeleccion extends Activity implements MapEventsReceiver, Lo
 	DirectedLocationOverlay myLocationOverlay;
 	protected boolean mTrackingMode;
 	float mAzimuthAngleSpeed = 0.0f;
-	protected LocationManager locationManager;
 	protected Marker markerStart, markerDestination;
 	protected GeoPoint startPoint, destinationPoint;
 	protected FolderOverlay itineraryMarkers;
@@ -201,7 +199,7 @@ public class ActivitySeleccion extends Activity implements MapEventsReceiver, Lo
 		
 		final Dialog dialog = new Dialog(ActivitySeleccion.this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.dialogogeolocalizar);
+		dialog.setContentView(R.layout.activity_options);
 		
 		final TextView txtFotosNum = (TextView) dialog.findViewById(R.id.txtFotosNum);
 		final TextView txtRadioNum = (TextView) dialog.findViewById(R.id.txtRadioNum);
@@ -258,23 +256,9 @@ public class ActivitySeleccion extends Activity implements MapEventsReceiver, Lo
 		});
 		
 		skbKm.setProgress(mRadio);
-		
-		final Button btnAceptarDialog = (Button) dialog.findViewById(R.id.btnAceptar);
-		
-		btnAceptarDialog.setOnClickListener(new OnClickListener(){
 
-			@Override
-			public void onClick(View v) {
-				SharedPreferences.Editor editor = mPreferencias.edit();
-				editor.putInt("radio", mRadio);
-				editor.putInt("cantidad", mCantidadFotos);
-				editor.commit();
-				dialog.dismiss();
-			}
-			
-		});
 		
-		dialog.show();
+
 		
 	}
 

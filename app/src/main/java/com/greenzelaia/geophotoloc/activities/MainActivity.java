@@ -20,18 +20,16 @@ import com.greenzelaia.geophotoloc.utils.LocationGatherer;
 import com.greenzelaia.geophotoloc.views.ListaFotosAdapter;
 import com.greenzelaia.geophotoloc.objects.ListaFotosItem;
 import com.greenzelaia.geophotoloc.R;
-import com.greenzelaia.geophotoloc.views.OptionsDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends ActionBarActivity implements ImageGetTask.ImageGetTaskCallback, OptionsDialog.OptionsDialogCallback, ListaFotosAdapter.itemSelectedCallback, LocationGatherer.LocationGathererCallback {
+public class MainActivity extends ActionBarActivity implements ImageGetTask.ImageGetTaskCallback, ListaFotosAdapter.itemSelectedCallback, LocationGatherer.LocationGathererCallback {
 
 	private static final String TAG = "geoPhotoLoc";
     private static final String TAG_DIALOG_FRAGMENT = "dialog_fragment";
 
-    OptionsDialog dialog;
     GridView gridView;
     ListaFotosAdapter mListaFotosAdapter;
 
@@ -62,8 +60,6 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 		
 		mRadio = mPreferencias.getInt("radio", 10);
 		mCantidadFotos = mPreferencias.getInt("cantidad", 20);
-
-        dialog = new OptionsDialog();
 
         locationGatherer = LocationGatherer.getInstance();
         locationGatherer.requestLocation(this);
@@ -121,17 +117,6 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
         startActivity(intent);
     }
 
-    @Override
-    public void onFinishOptionsDialog(int mRadio, int mCantidadFotos) {
-        this.mRadio = mRadio;
-        this.mCantidadFotos = mCantidadFotos;
-        SharedPreferences.Editor editor = mPreferencias.edit();
-        editor.putInt("radio", mRadio);
-        editor.putInt("cantidad", mCantidadFotos);
-        editor.commit();
-        updateDisplay();
-    }
-
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -149,8 +134,8 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	    case R.id.menuConfiguracion:
-	    	dialog = dialog.newInstance(mRadio, mCantidadFotos);
-            dialog.show(getFragmentManager(), TAG_DIALOG_FRAGMENT);
+            Intent intent = new Intent(this, OptionsActivity.class);
+            startActivity(intent);
 	        return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
