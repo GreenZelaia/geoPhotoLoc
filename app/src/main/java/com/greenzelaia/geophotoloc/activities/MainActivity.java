@@ -25,6 +25,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+
+
 public class MainActivity extends ActionBarActivity implements ImageGetTask.ImageGetTaskCallback, ListaFotosAdapter.itemSelectedCallback, LocationGatherer.LocationGathererCallback {
 
 	private static final String TAG = "geoPhotoLoc";
@@ -45,6 +50,10 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_awesome_toolbar);
         setSupportActionBar(toolbar);
