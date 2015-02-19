@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.greenzelaia.geophotoloc.activities.ImageActivity"
+    android:id="@+id/relLayout">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/my_awesome_toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" />
+
+    <view
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        class="uk.co.senab.photoview.PhotoView"
+        android:id="@+id/photoView"
+        android:layout_below="@+id/my_awesome_toolbar"
+        android:background="#000000" />
+
+</RelativeLayout>

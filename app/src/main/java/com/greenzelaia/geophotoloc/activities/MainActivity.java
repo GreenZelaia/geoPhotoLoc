@@ -33,7 +33,7 @@ import com.google.android.gms.ads.AdView;
 public class MainActivity extends ActionBarActivity implements ImageGetTask.ImageGetTaskCallback, ListaFotosAdapter.itemSelectedCallback, LocationGatherer.LocationGathererCallback {
 
 	private static final String TAG = "geoPhotoLoc";
-    private static final String TAG_DIALOG_FRAGMENT = "dialog_fragment";
+    static final int PICK_OPTION_REQUEST = 1;
 
     GridView gridView;
     ListaFotosAdapter mListaFotosAdapter;
@@ -118,7 +118,7 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 
     @Override
     public void itemSelected(ListaFotosItem itemLista) {
-        Intent intent = new Intent(this, ActivitySeleccion.class);
+        Intent intent = new Intent(this, ImageActivity.class);
         intent.putExtra("itemSeleccionado", itemLista);
         intent.putExtra("longitud", mLocation.getLongitude());
         intent.putExtra("latitud", mLocation.getLatitude());
@@ -131,7 +131,9 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 		super.onResume();
 		mRadio = mPreferencias.getInt("radio", 10);
 		mCantidadFotos = mPreferencias.getInt("cantidad", 20);
+        updateDisplay();
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -18,4 +18,7 @@
     <string name="title_activity_preferencias">ActivityPreferencias</string>
     <string name="title_activity_options">Configuración</string>
     <string name="banner_ad_unit_id">ca-app-pub-8734268578425576/5477871641</string>
+    <string name="title_activity_map">Ruta</string>
+    <string name="title_activity_image">Imagen</string>
+
 </resources>

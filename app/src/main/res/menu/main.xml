@@ -1,9 +1,12 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <item
         android:id="@+id/menuConfiguracion"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        app:showAsAction="never"
         android:title="@string/menuConfig"/>
 
 </menu>

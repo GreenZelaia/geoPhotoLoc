@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.greenzelaia.geophotoloc" >
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -32,16 +33,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ActivitySeleccion"
-            android:label="@string/title_activity_activity_seleccion" >
-        </activity>
-        <activity
             android:name=".activities.OptionsActivity"
             android:label="@string/title_activity_options" >
         </activity>
+
         <activity android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
+
+        <activity
+            android:name=".activities.MapActivity"
+            android:label="@string/title_activity_map"
+            android:noHistory="true">
+        </activity>
+        <activity
+            android:name=".activities.ImageActivity"
+            android:label="@string/title_activity_image"
+            android:noHistory="true">
+        </activity>
+
     </application>
 
 </manifest>

@@ -2,10 +2,7 @@ package com.greenzelaia.geophotoloc.objects;
 
 import java.io.Serializable;
 
-import android.graphics.Bitmap;
 import android.location.Location;
-
-import com.greenzelaia.geophotoloc.utils.SerializableImage;
 
 public class ListaFotosItem implements Serializable{
 	
@@ -17,7 +14,6 @@ public class ListaFotosItem implements Serializable{
     private double mLongitud;
     private double mLatitud;
     private double mDistancia;
-    private SerializableImage mImagen;
 
 	public ListaFotosItem(String titulo, String autor, String url,
 			double longitud, double latitud, double distancia) {
@@ -28,16 +24,8 @@ public class ListaFotosItem implements Serializable{
 		this.mLongitud = longitud;
 		this.mLatitud = latitud;
 		this.mDistancia = distancia;
-		mImagen = new SerializableImage();
-	}
-	
-	public Bitmap getImagen() {
-		return mImagen.getImage();
 	}
 
-	public void setImagen(Bitmap imagen) {
-		this.mImagen.setImage(imagen);
-	}
     
 	public String getTitulo() {
 		return mTitulo;
