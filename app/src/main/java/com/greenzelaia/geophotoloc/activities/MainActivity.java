@@ -51,6 +51,7 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Publicidad
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
