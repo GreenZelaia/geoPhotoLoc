@@ -9,7 +9,6 @@
     <string name="latitude_longitude" translatable="false">%1$.8f, %2$.8f</string>
     <string name="address_output_string" translatable="false">%1$s %2$s %3$s</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-8734268578425576/5477871641</string>
-    <string name="app_name">GeoPhotoLoc</string>
     <string name="menuConfig">Configuration</string>
     <string name="opciones">Geolocation preferences</string>
     <string name="title_activity_map">Route</string>
