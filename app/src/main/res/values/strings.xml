@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GeoPhotoLoc</string>
+    <string name="app_name" translatable="false">GeoPhotoLoc</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_lista_fotos">GeoPhotoLoc</string>
-    <string name="departure">Punto de Partida</string>
-    <string name="opciones">Opciones de geolocalización</string>
-    <string name="radio">Radio de busqueda (Km)</string>
-    <string name="fotobuscar">Número de fotografias</string>
-    <string name="destination">Destino</string>
-    <string name="title_activity_activity_intro">GeoPhotoLoc</string>
-    <string name="latitude_longitude">%1$.8f, %2$.8f</string>
-    <string name="address_output_string">%1$s %2$s %3$s</string>
-    <string name="title_activity_activity_seleccion">ActivitySeleccion</string>
-    <string name="menuConfig">Configuración</string>
-    <string name="title_activity_preferencias">ActivityPreferencias</string>
-    <string name="title_activity_options">Configuración</string>
-    <string name="banner_ad_unit_id">ca-app-pub-8734268578425576/5477871641</string>
-    <string name="title_activity_map">Ruta</string>
-    <string name="title_activity_image">Imagen</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="title_activity_lista_fotos" translatable="false">GeoPhotoLoc</string>
+    <string name="title_activity_activity_intro" translatable="false">GeoPhotoLoc</string>
+    <string name="latitude_longitude" translatable="false">%1$.8f, %2$.8f</string>
+    <string name="address_output_string" translatable="false">%1$s %2$s %3$s</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-8734268578425576/5477871641</string>
+    <string name="app_name">GeoPhotoLoc</string>
+    <string name="menuConfig">Configuration</string>
+    <string name="opciones">Geolocation preferences</string>
+    <string name="title_activity_map">Route</string>
+    <string name="title_activity_options">Preferences</string>
+    <string name="radio">Radius search (Km)</string>
+    <string name="title_activity_image">Picture</string>
+    <string name="departure">Departure</string>
+    <string name="destination">Destination</string>
+    <string name="fotobuscar">Number of pictures</string>
 
 </resources>

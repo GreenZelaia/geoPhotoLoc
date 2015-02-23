@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Ajustes</string>
+    <string name="departure">Punto de Partida</string>
+    <string name="destination">Destino</string>
+    <string name="fotobuscar">Número de fotografias</string>
+    <string name="menuConfig">Configuración</string>
+    <string name="opciones">Opciones de geolocalización</string>
+    <string name="radio">Radio de busqueda (Km)</string>
+    <string name="title_activity_image">Fotografía</string>
+    <string name="title_activity_map">Ruta</string>
+    <string name="title_activity_options">Configuración</string>
+</resources>
