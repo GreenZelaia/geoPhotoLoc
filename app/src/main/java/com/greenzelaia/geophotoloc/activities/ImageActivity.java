@@ -10,6 +10,8 @@ import android.view.View;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.Tracker;
+import com.greenzelaia.geophotoloc.GeoPhotoLoc;
 import com.greenzelaia.geophotoloc.R;
 import com.greenzelaia.geophotoloc.objects.ListaFotosItem;
 import com.squareup.picasso.Picasso;
@@ -26,6 +28,10 @@ public class ImageActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
+
+        //Analytics
+        Tracker t = ((GeoPhotoLoc)getApplication()).getTracker();
+        t.enableAdvertisingIdCollection(true);
 
         //Publicidad
         AdView mAdView = (AdView) findViewById(R.id.adView);

@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.Tracker;
+import com.greenzelaia.geophotoloc.GeoPhotoLoc;
 import com.greenzelaia.geophotoloc.utils.ImageGetTask;
 import com.greenzelaia.geophotoloc.utils.LocationGatherer;
 import com.greenzelaia.geophotoloc.views.ListaFotosAdapter;
@@ -28,11 +30,14 @@ import org.json.JSONObject;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
 
 
 public class MainActivity extends ActionBarActivity implements ImageGetTask.ImageGetTaskCallback, ListaFotosAdapter.itemSelectedCallback, LocationGatherer.LocationGathererCallback {
 
 	private static final String TAG = "geoPhotoLoc";
+
+
     static final int PICK_OPTION_REQUEST = 1;
 
     GridView gridView;
@@ -51,10 +56,16 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Analytics
+        Tracker t = ((GeoPhotoLoc)getApplication()).getTracker();
+        t.enableAdvertisingIdCollection(true);
+
         //Publicidad
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_awesome_toolbar);
         setSupportActionBar(toolbar);
@@ -74,6 +85,7 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
         locationGatherer = LocationGatherer.getInstance();
         locationGatherer.requestLocation(this);
 	}
+
 
     @Override
     public void locationObtained() {
@@ -136,7 +148,7 @@ public class MainActivity extends ActionBarActivity implements ImageGetTask.Imag
 	}
 
 
-	@Override
+    @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
